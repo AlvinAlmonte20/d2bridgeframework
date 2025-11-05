@@ -104,7 +104,7 @@ begin
  FPostgreSQL:= TD2BridgeAPPConfigDatabaseParam.Create(FAPPConfig, self, 'PostgreSQL', AMultiTenancy);
  FSQLServer:= TD2BridgeAPPConfigDatabaseParam.Create(FAPPConfig, self, 'SQL Server', AMultiTenancy);
  FOracle:= TD2BridgeAPPConfigDatabaseParam.Create(FAPPConfig, self, 'Oracle', AMultiTenancy);
- FCustom:= TD2BridgeAPPConfigDatabaseParam.Create(FAPPConfig, self, 'Custom', AMultiTenancy);
+ FCustom:= TD2BridgeAPPConfigDatabaseParam.Create(FAPPConfig, self, 'Custom Database', AMultiTenancy);
 end;
 
 destructor TD2BridgeAPPConfigDatabase.Destroy;

@@ -96,7 +96,7 @@ begin
  FDatabaseType:= ADatabaseType;
  FMultiTenancy:= AMultiTenancy;
 
- if IsD2DockerContext then
+ if not IsD2DockerContext then
   LoadFromINI;
 end;
 
@@ -167,7 +167,7 @@ end;
 
 function TD2BridgeAPPConfigDatabaseParam.INISection: string;
 begin
- result:= 'App Config (' + FDatabaseType + ')';
+ result:= 'App Config ' + FDatabaseType + '';
  if FMultiTenancy then
   result:= result + ' Tenancy';
 end;

@@ -85,14 +85,17 @@ Uses
 
 constructor TD2BridgeAPPConfig.Create;
 begin
- FFileINIConfig:= TIniFile.Create(ExtractFilePath(GetModuleName(HInstance))+'Config.ini');;
+ FPath:= TD2BridgeAPPConfigPath.Create;
+
+ //FFileINIConfig:= TIniFile.Create(ExtractFilePath(GetModuleName(HInstance))+'Config.ini');
+ FFileINIConfig:= TIniFile.Create(FPath.App + 'Config.ini');
 
  FConfigCustom:= TD2BridgeAPPConfigCustom.Create(self);
  FConfigDatabase:= TD2BridgeAPPConfigDatabase.Create(self);
  FConfigDatabaseTenancy:= TD2BridgeAPPConfigDatabase.Create(self);
  FVersion:= TD2BridgeAPPConfigVersion.Create;
- FPath:= TD2BridgeAPPConfigPath.Create;
  FINIConfig:= TD2BridgeAPPConfigINIConfig.Create(Self);
+
 end;
 
 function TD2BridgeAPPConfig.Custom: ID2BridgeAPPConfigCustom;

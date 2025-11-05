@@ -84,7 +84,7 @@ end;
 
 function TD2BridgeAPPConfigCustomItem.INISection: string;
 begin
- result:= 'App Config (Custom)';
+ result:= 'App Config Custom Item';
 end;
 
 procedure TD2BridgeAPPConfigCustomItem.SetKey(const Value: string);
