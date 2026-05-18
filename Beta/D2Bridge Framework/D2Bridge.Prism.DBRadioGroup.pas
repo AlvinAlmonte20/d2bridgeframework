@@ -42,13 +42,17 @@ type
  PrismDBRadioGroup = class(TD2BridgePrismItem, ID2BridgeFrameworkItemDBRadioGroup)
   private
    FProcGetItems: TOnGetStrings;
+   FProcGetValues: TOnGetStrings;
    FProcSetCaption: TOnSetValue;
    FProcGetCaption: TOnGetValue;
    FProcSetColumns: TOnSetValue;
    FProcGetColumns: TOnGetValue;
    FD2BridgeDatawareDataSource: TD2BridgeDatawareDataSource;
    procedure SetProcGetItems(AProc: TOnGetStrings);
+   procedure SetProcGetValues(AProc: TOnGetStrings);
    function GetProcGetItems: TOnGetStrings;
+   function GetProcGetValues: TOnGetStrings;
+
    function GetProcGetCaption: TOnGetValue;
    function GetProcSetCaption: TOnSetValue;
    procedure SetProcGetCaption(const Value: TOnGetValue);
@@ -70,6 +74,7 @@ type
    function Dataware : ID2BridgeDatawareDataSource;
 
    property ProcGetItems: TOnGetStrings read GetProcGetItems write SetProcGetItems;
+   property ProcGetValues: TOnGetStrings read GetProcGetValues write SetProcGetValues;
    property ProcGetCaption: TOnGetValue read GetProcGetCaption write SetProcGetCaption;
    property ProcSetCaption: TOnSetValue read GetProcSetCaption write SetProcSetCaption;
    property ProcGetColumns: TOnGetValue read GetProcGetColumns write SetProcGetColumns;
@@ -89,6 +94,7 @@ begin
  inherited;
 
  FProcGetItems:= nil;
+ FProcGetValues:= nil;
  FProcGetCaption:= nil;
  FProcSetCaption:= nil;
  FProcGetColumns:= nil;
@@ -135,6 +141,11 @@ begin
  result:= FProcGetItems;
 end;
 
+function PrismDBRadioGroup.GetProcGetValues: TOnGetStrings;
+begin
+ result:= FProcGetValues;
+end;
+
 function PrismDBRadioGroup.GetProcSetCaption: TOnSetValue;
 begin
  result:= FProcSetCaption;
@@ -171,6 +182,9 @@ begin
  if Assigned(FProcGetItems) then
  TPrismDBRadioGroup(NewObj).ProcGetItems:= FProcGetItems;
 
+  if Assigned(FProcGetValues) then
+ TPrismDBRadioGroup(NewObj).ProcGetValues:= FProcGetValues;
+
  if Assigned(FProcGetCaption) then
  TPrismDBRadioGroup(NewObj).ProcGetCaption:= FProcGetCaption;
 
@@ -198,6 +212,12 @@ procedure PrismDBRadioGroup.SetProcGetItems(AProc: TOnGetStrings);
 begin
  FProcGetItems:= AProc;
 end;
+
+procedure PrismDBRadioGroup.SetProcGetValues(AProc: TOnGetStrings);
+begin
+ FProcGetValues :=  AProc;
+end;
+
 
 procedure PrismDBRadioGroup.SetProcSetCaption(const Value: TOnSetValue);
 begin

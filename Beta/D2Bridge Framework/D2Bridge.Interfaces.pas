@@ -600,6 +600,8 @@ end;
   ['{8F938440-5B4A-493E-B9D4-2A6874318F45}']
    procedure SetProcGetItems(AProc: TOnGetStrings);
    function GetProcGetItems: TOnGetStrings;
+   procedure SetProcGetValues(AProc: TOnGetStrings);
+   function GetProcGetValues: TOnGetStrings;
    function GetProcGetCaption: TOnGetValue;
    function GetProcSetCaption: TOnSetValue;
    procedure SetProcGetCaption(const Value: TOnGetValue);
@@ -612,6 +614,7 @@ end;
    function Dataware : ID2BridgeDatawareDataSource;
 
    property ProcGetItems: TOnGetStrings read GetProcGetItems write SetProcGetItems;
+   property ProcGetValues: TOnGetStrings read GetProcGetValues write SetProcGetValues;
    property ProcGetCaption: TOnGetValue read GetProcGetCaption write SetProcGetCaption;
    property ProcSetCaption: TOnSetValue read GetProcSetCaption write SetProcSetCaption;
    property ProcGetColumns: TOnGetValue read GetProcGetColumns write SetProcGetColumns;

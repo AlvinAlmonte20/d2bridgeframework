@@ -53,6 +53,8 @@ type
    procedure TDBRadioGroupOnChange(EventParams: TStrings);
 
    function TDBRadioGroupProcGetItems: TStrings;
+   function TDBRadioGroupProcGetValues: TStrings;
+
    function TDBRadioGroupOnGetEnabled: Variant;
    procedure TDBRadioGroupOnSetEnabled(AValue: Variant);
    function TDBRadioGroupOnGetVisible: Variant;
@@ -142,6 +144,7 @@ begin
  TDBRadioGroup(FD2BridgeItemVCLObj.Item).DataField := '';
 
  FD2BridgeItemVCLObj.BaseClass.FrameworkExportType.DBRadioGroup.ProcGetItems := TDBRadioGroupProcGetItems;
+ FD2BridgeItemVCLObj.BaseClass.FrameworkExportType.DBRadioGroup.ProcGetValues := TDBRadioGroupProcGetValues;
  FD2BridgeItemVCLObj.BaseClass.FrameworkExportType.DBRadioGroup.GetEnabled := TDBRadioGroupOnGetEnabled;
  FD2BridgeItemVCLObj.BaseClass.FrameworkExportType.DBRadioGroup.SetEnabled := TDBRadioGroupOnSetEnabled;
  FD2BridgeItemVCLObj.BaseClass.FrameworkExportType.DBRadioGroup.GetVisible := TDBRadioGroupOnGetVisible;
@@ -215,6 +218,11 @@ end;
 function TVCLObjTDBRadioGroup.TDBRadioGroupProcGetItems: TStrings;
 begin
  Result := TDBRadioGroup(FD2BridgeItemVCLObj.Item).Items;
+end;
+
+function TVCLObjTDBRadioGroup.TDBRadioGroupProcGetValues: TStrings;
+begin
+ Result := TDBRadioGroup(FD2BridgeItemVCLObj.Item).Values;
 end;
 
 function TVCLObjTDBRadioGroup.VCLClass: TClass;
