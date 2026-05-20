@@ -1142,6 +1142,8 @@ type
    function GetCaption: string;
    procedure SetCaption(const Value: string);
    function GetItems: TStrings;
+   function GetValues: TStrings;
+
    function GetColumns: Integer;
    procedure SetColumns(const Value: Integer);
 
@@ -1149,6 +1151,8 @@ type
 
    property Caption: string read GetCaption write SetCaption;
    property Items: TStrings read GetItems;
+   property Values: TStrings read GetValues;
+
    property Columns: integer read GetColumns write SetColumns;
  end;
 {$ENDIF}

@@ -35,7 +35,7 @@ unit Prism.DBRadioGroup;
 interface
 
 uses
- Classes, D2Bridge.JSON, SysUtils, StrUtils,
+ Classes, D2Bridge.JSON, SysUtils, StrUtils,  DB,
  Prism.Forms.Controls, Prism.Interfaces, Prism.Types, Prism.DataLink.Field,
  D2Bridge.Forms;
 
@@ -46,8 +46,10 @@ type
    FStoredColumns: integer;
    FStoredCaption: string;
    FStoredItems: TStrings;
+   FStoredValues: TStrings;
    FDataLinkField: TPrismDataLinkField;
    FProcGetItems: TOnGetStrings;
+   FProcGetValues: TOnGetStrings;
    FProcGetCaption: TOnGetValue;
    FProcSetCaption: TOnSetValue;
    FProcGetColumns: TOnGetValue;
@@ -55,6 +57,7 @@ type
    function GetCaption: string;
    procedure SetCaption(const Value: string);
    function GetItems: TStrings;
+   function GetValues: TStrings;
    function GetColumns: Integer;
    procedure SetColumns(const Value: Integer);
    function GroupNamed: string;
@@ -78,9 +81,11 @@ type
 
    property Caption: string read GetCaption write SetCaption;
    property Items: TStrings read GetItems;
+   property Values: TStrings read GetValues;
    property Columns: integer read GetColumns write SetColumns;
 
    property ProcGetItems: TOnGetStrings read FProcGetItems write FProcGetItems;
+   property ProcGetValues: TOnGetStrings read FProcGetValues write FProcGetValues;
    property ProcGetCaption: TOnGetValue read FProcGetCaption write FProcGetCaption;
    property ProcSetCaption: TOnSetValue read FProcSetCaption write FProcSetCaption;
    property ProcGetColumns: TOnGetValue read FProcGetColumns write FProcGetColumns;
@@ -99,6 +104,7 @@ begin
  inherited;
 
  FStoredItems:= TStringList.Create;
+ FStoredValues:= TStringList.Create;
 
  FDataLinkField:= TPrismDataLinkField.Create(Self);
  FDataLinkField.UseHTMLFormatSettings:= false;
@@ -113,6 +119,7 @@ destructor TPrismDBRadioGroup.Destroy;
 begin
  FDataLinkField.Free;
  FStoredItems.Free;
+ FStoredValues.Free;
 
  inherited;
 end;
@@ -147,6 +154,16 @@ begin
   Result:= FStoredItems;
 end;
 
+function TPrismDBRadioGroup.GetValues: TStrings;
+begin
+ if Assigned(ProcGetValues) then
+ begin
+  Result:= ProcGetValues;
+ end else
+  Result:= FStoredValues;
+end;
+
+
 function TPrismDBRadioGroup.GetReadOnly: Boolean;
 begin
  result:= Inherited;
@@ -167,6 +184,7 @@ begin
  FStoredSelectedItem:= DataWare.FieldText;
  FStoredCaption:= Caption;
  FStoredItems.CommaText:= Items.CommaText;
+ FStoredValues.CommaText:= Values.CommaText;
  FStoredColumns:= Columns;
 end;
 
@@ -183,6 +201,7 @@ end;
 procedure TPrismDBRadioGroup.ProcessComponentState(const ComponentStateInfo: TJSONObject);
 var
  vItemIndex: Integer;
+ vFieldValue : String;
 begin
  inherited;
 
@@ -193,12 +212,21 @@ begin
    begin
     if (vItemIndex >= 0) and (vItemIndex < Items.Count) then
     begin
-     DataWare.FieldValue:= Items[vItemIndex];
+
+     if (FStoredValues.Count = 0) then
+       vFieldValue        := Items[vItemIndex]
+     else
+       vFieldValue        := FStoredValues[vItemIndex];
+
+     DataWare.FieldValue:= vFieldValue;
      FStoredSelectedItem:= Items[vItemIndex];
     end else
     begin
-     DataWare.Field.Clear;
-     FStoredSelectedItem:= '';
+     if (DataWare.DataSet <> nil) and (DataWare.DataSet.State in dsEditModes) then
+     begin
+      DataWare.Field.Clear;
+      FStoredSelectedItem:= '';
+     end;
     end;
    end;
   end;
@@ -303,8 +331,10 @@ var
  NewSelectedItem, NewCaption: string;
  NewItems: TStrings;
  vItemIndex, NewColumns: integer;
+ vIndexValue : Integer;
 begin
- NewCaption:= Caption;
+ NewCaption  := Caption;
+ vIndexValue := 0;
  if NewCaption <> FStoredCaption then
  begin
   FStoredCaption:= NewCaption;
@@ -312,7 +342,17 @@ begin
   ScriptJS.Add('document.querySelector("[id='+LegendNamed+' i]").textContent = "'+  FStoredCaption +'";');
  end;
 
- NewSelectedItem := FDataLinkField.FieldText(AForceUpdate);
+ NewSelectedItem := '';
+ if (FStoredValues.Count = 0) then
+   NewSelectedItem := FDataLinkField.FieldText(AForceUpdate)
+ else
+ begin
+  vIndexValue     := FStoredValues.IndexOf(FDataLinkField.FieldText(AForceUpdate));
+  if (vIndexValue > -1)  then
+     NewSelectedItem := FStoredItems[vIndexValue];
+ end;
+
+
  if (NewSelectedItem <> FStoredSelectedItem) or (AForceUpdate) then
  begin
   FStoredSelectedItem:= NewSelectedItem;
