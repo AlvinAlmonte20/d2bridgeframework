@@ -254,17 +254,19 @@ begin
     FCriticalSession.Leave;
    end;
   end;
-
-  if self <> nil then
-   if Assigned(FPrismControl) and
-      Assigned(FPrismControl.Form) and
-      Assigned(FPrismControl.Session) and
-      (not FPrismControl.Session.Closing) and
-      (not (csDestroying in (FPrismControl.Session as TPrismSession).ComponentState)) then
-    begin
-     (FPrismControl.Form as TPrismForm).DoEventD2Bridge(FPrismControl as TPrismControl, EventType, Parameters);
-    end;
+  // Movido o Trecho completo do DoEventD2Bridge para fora do Else, assim sempre será executando.
+  // Alisson - 04/06/2026
  end;
+
+ if self <> nil then
+  if Assigned(FPrismControl) and
+     Assigned(FPrismControl.Form) and
+     Assigned(FPrismControl.Session) and
+     (not FPrismControl.Session.Closing) and
+     (not (csDestroying in (FPrismControl.Session as TPrismSession).ComponentState)) then
+   begin
+    (FPrismControl.Form as TPrismForm).DoEventD2Bridge(FPrismControl as TPrismControl, EventType, Parameters);
+   end;
 end;
 
 function TPrismControlEvent.CallEventResponse(Parameters: TStrings): string;
@@ -287,7 +289,8 @@ begin
  FEventType := AEventType;
  FPrismControl := AOwner;
 
- if AEventType in [EventOnClick, EventOnDblClick, EventOnChange, EventOnPrismControlEvent] then
+ if AEventType in [EventOnClick, EventOnDblClick, EventOnChange, EventOnPrismControlEvent,
+                   EventOnExit, EventOnCheckChange, EventOnCheck, EventOnSelect] then
   FAutoPublishedEvent:= true
  else
   FAutoPublishedEvent:= false;

@@ -300,6 +300,9 @@ begin
  else
  if PrismEventType = EventOnSelect then
   result:= 'input'
+ else
+ if PrismEventType = EventOnExit then
+  result:= 'blur'
 end;
 
 
