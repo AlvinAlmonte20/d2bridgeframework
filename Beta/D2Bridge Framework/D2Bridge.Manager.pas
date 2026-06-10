@@ -327,7 +327,7 @@ begin
   InterfaceGUID := GetTypeData(InterfaceTypeInfo).Guid;
 
   try
-   // Itere sobre todas as classes carregadas no tempo de execução
+   // Itere sobre todas as classes carregadas no tempo de execuï¿½ï¿½o
    for Classe in GetRegisteredClass do
    begin
      if Supports(Classe, InterfaceGUID) then
@@ -366,7 +366,7 @@ end;
 
 class function TD2BridgeManager.Version: string;
 begin
- Result:= '2.5.82'; //Version of D2Bridge Framework
+ Result:= '2.5.83'; //Version of D2Bridge Framework
 end;
 
 end.
