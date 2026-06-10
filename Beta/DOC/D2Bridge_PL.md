@@ -51,7 +51,7 @@ D2Bridge to framework open-source umożliwiający konwersję aplikacji napisanyc
 |----------|---------|
 | **Autor** | Talis Jonatas Gomes |
 | **Licencja** | LGPL 2.1 |
-| **Wersja Beta** | 2.5.76+ |
+| **Wersja Beta** | 2.5.83 |
 | **Wersja Stable** | 2.0.8 |
 | **Delphi** | 10.0 - 13.0 |
 | **Lazarus** | 3.4 - 4.4 (Windows) |

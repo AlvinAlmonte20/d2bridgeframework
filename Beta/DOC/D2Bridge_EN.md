@@ -51,7 +51,7 @@ D2Bridge is an open-source framework that enables converting Delphi or Lazarus a
 |-----------|-------|
 | **Author** | Talis Jonatas Gomes |
 | **License** | LGPL 2.1 |
-| **Beta Version** | 2.5.76+ |
+| **Beta Version** | 2.5.83 |
 | **Stable Version** | 2.0.8 |
 | **Delphi** | 10.0 - 13.0 |
 | **Lazarus** | 3.4 - 4.4 (Windows) |
