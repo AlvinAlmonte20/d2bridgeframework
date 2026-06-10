@@ -225,27 +225,31 @@ begin
  inherited;
 
  NewCaption:= Caption;
- if (AForceUpdate) or (FStoredCaption <> NewCaption) then
+ if FStoredCaption <> NewCaption then
  begin
   FStoredCaption := NewCaption;
-  //ScriptJS.Add('document.querySelector("[id='+AnsiUpperCase(NamePrefix)+' i]").innerHTML = '+ FormatValueHTML(FStoredCaption) +';');
 
-  ScriptJS.Add(
-  '(() => {'+
-  '  const el = document.querySelector("[id='+AnsiUpperCase(NamePrefix)+' i]");'+
-  '  if (!el) return;'+
-  '  const badge = el.querySelector("span.d2bridgelabelbadge");'+
-  '  if (badge) {'+
-  '    const badgeHTML = badge.outerHTML;'+
-  '    const wasBefore = (badge.previousSibling === null);'+
-  '    el.innerHTML = '+FormatValueHTML(FStoredCaption)+';'+
-  '    if (wasBefore) el.insertAdjacentHTML("afterbegin", badgeHTML);'+
-  '    else el.insertAdjacentHTML("beforeend", badgeHTML);'+
-  '  } else {'+
-  '    el.innerHTML = '+FormatValueHTML(FStoredCaption)+';'+
-  '  }'+
-  '})();'
-  );
+  if not AForceUpdate then
+  begin
+   //ScriptJS.Add('document.querySelector("[id='+AnsiUpperCase(NamePrefix)+' i]").innerHTML = '+ FormatValueHTML(FStoredCaption) +';');
+
+   ScriptJS.Add(
+   '(() => {'+
+   '  const el = document.querySelector("[id='+AnsiUpperCase(NamePrefix)+' i]");'+
+   '  if (!el) return;'+
+   '  const badge = el.querySelector("span.d2bridgelabelbadge");'+
+   '  if (badge) {'+
+   '    const badgeHTML = badge.outerHTML;'+
+   '    const wasBefore = (badge.previousSibling === null);'+
+   '    el.innerHTML = '+FormatValueHTML(FStoredCaption)+';'+
+   '    if (wasBefore) el.insertAdjacentHTML("afterbegin", badgeHTML);'+
+   '    else el.insertAdjacentHTML("beforeend", badgeHTML);'+
+   '  } else {'+
+   '    el.innerHTML = '+FormatValueHTML(FStoredCaption)+';'+
+   '  }'+
+   '})();'
+   );
+  end;
 
  end;
 

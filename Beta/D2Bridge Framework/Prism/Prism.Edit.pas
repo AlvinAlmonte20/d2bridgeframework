@@ -344,11 +344,9 @@ begin
  end;
 
  NewDataType:= DataType;
- if (AForceUpdate) or (FStoredDataType <> NewDataType) then
- begin
-  FStoredDataType:= NewDataType;
-  ScriptJS.Add('document.querySelector("[id='+AnsiUpperCase(NamePrefix)+' i]").' + InputHTMLTypeByPrismFieldType(FStoredDataType) +';');
- end;
+ if FStoredDataType <> NewDataType then
+  ScriptJS.Add('document.querySelector("[id='+AnsiUpperCase(NamePrefix)+' i]").' + InputHTMLTypeByPrismFieldType(NewDataType) +';');
+ FStoredDataType:= NewDataType;
 
  NewTextMask:= TextMask;
  if (AForceUpdate) or (FStoredTextMask <> NewTextMask) then
