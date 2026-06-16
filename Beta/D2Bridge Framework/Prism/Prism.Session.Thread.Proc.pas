@@ -258,18 +258,23 @@ begin
   begin
    if FSincronize then
    begin
+    var vSpinCount: Integer := 0;
     repeat
-//     try
-      //Yield;
-//      if GetCurrentThreadId = MainThreadID then
-//      begin
-//       CheckSynchronize;
-//       Application.ProcessMessages;
-//      end;
-//     except
-//     end;
-
      sleep(1);
+     Inc(vSpinCount);
+     // 60 000 iteracoes x 1ms = 60 segundos sem resposta: loga e aborta espera
+     if vSpinCount = 60000 then
+     begin
+      try
+       var vIdent: string := '';
+       if Assigned(FPrismSession) then
+        vIdent := FPrismSession.InfoConnection.Identity;
+       PrismBaseClass.Log(vIdent, '', '', 'ThreadProc.SpinTimeout',
+        'Thread sincronizada nao concluiu em 60s. Posivel travamento VCL/D2Bridge.');
+      except
+      end;
+      Break;
+     end;
     until FFinished;
    end else
    begin
@@ -331,10 +336,25 @@ begin
     pmtFour:  FProc4(FProcVar1, FProcVar2, FProcVar3, FProcVar4);
   end;
  except on E: Exception do
+ begin
 {$IFDEF MSWINDOWS}
    if IsDebuggerPresent and (not PrismBaseClass.IsD2DockerContext) then
      raise Exception.Create(E.Message);
 {$ENDIF}
+   try
+    if Assigned(FPrismSession) then
+     PrismBaseClass.Log(
+      FPrismSession.InfoConnection.Identity,
+      '',
+      '',
+      'ThreadProc',
+      E.ClassName + ': ' + E.Message
+     )
+    else
+     PrismBaseClass.Log('', '', '', 'ThreadProc', E.ClassName + ': ' + E.Message);
+   except
+   end;
+ end;
  end;
 
  try
