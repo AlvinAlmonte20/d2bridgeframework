@@ -36,7 +36,7 @@ interface
 
 uses
   Classes, SysUtils, SyncObjs,
-  Prism.Interfaces, Prism.Types;
+  Prism.Interfaces, Prism.Types, Prism.BaseClass;
 
 type
   TPrismFormTimer = class(TThread)
@@ -140,7 +140,18 @@ begin
          //Synchronize(CurrentThread, FOnTimer);
          //TThread.Synchronize(nil, FOnTimer);
          FOnTimer();
-        except
+        except on E: Exception do
+        begin
+         try
+          PrismBaseClass.Log(
+           '',
+           '',
+           '',
+           'FormTimer.OnTimer',
+           E.ClassName + ': ' + E.Message
+          );
+         except
+         end;
         end;
        end;
      end;
@@ -152,9 +163,16 @@ begin
  //    if Assigned(self) then
  //    FPauseEvent.WaitFor(INFINITE); // Pauses execution if paused
    end;
+   end;
 
- except
+ except on E: Exception do
+ begin
   FTerminated := True;
+  try
+   PrismBaseClass.Log('', '', '', 'FormTimer.Execute', E.ClassName + ': ' + E.Message);
+  except
+  end;
+ end;
  end;
 end;
 
