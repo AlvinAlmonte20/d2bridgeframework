@@ -1,3 +1,17 @@
+<div align="center">
+<strong style="font-size:28px;">D2Bridge Framework</strong>
+
+<br>
+
+![D2Bridge Logo](/assets/LogoD2BridgeTransp.png)
+
+[![GitHub stars](https://img.shields.io/github/stars/d2bridge/d2bridgeframework?style=social)](https://github.com/d2bridge/d2bridgeframework/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/d2bridge/d2bridgeframework?style=social)](https://github.com/d2bridge/d2bridgeframework/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/d2bridge/d2bridgeframework)](https://github.com/d2bridge/d2bridgeframework/issues)
+[![License: LGPL v2.1](https://img.shields.io/badge/License-LGPL%202.1-blue.svg)](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/d2bridge/d2bridgeframework)
+</div>
+
 ---
 
 D2Bridge Framework brings **Delphi and Lazarus projects to the Web**.
@@ -27,11 +41,11 @@ This Framework was designed to compile your Delphi project on the Web, all proce
 
 ## 🖥️ Compatibility
 
-| Platform | Supported Versions |
-|----------|---------------------|
-| **Delphi Editions** | Community, Professional, Enterprise, Architect |
-| **Delphi Versions** | - Seattle (10.0) <br> - Berlin (10.1) <br> - Tokyo (10.2) <br> - Rio (10.3) <br> - Sydney (10.4) <br> - Alexandria (11.3) <br> - Athens 12.0 <br> - Florence 13.0 |
-| **Lazarus (Windows only)** | - 3.4 <br> - 3.6 <br> - 3.8 <br> - 4.0 <br> - 4.2 <br> - 4.4 |
+| Platform                   | Supported Versions                                                                                                                                                                  |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Delphi Editions**        | Community, Professional, Enterprise, Architect                                                                                                                    |
+| **Delphi Versions**        | - Seattle (10.0) <br> - Berlin (10.1) <br> - Tokyo (10.2) <br> - Rio (10.3) <br> - Sydney (10.4) <br> - Alexandria (11.3) <br> - Athens 12.0 <br> - Florence 13.0 |
+| **Lazarus (Windows only)** | - 3.4 <br> - 3.6 <br> - 3.8 <br> - 4.0 <br> - 4.2 <br> - 4.4                                                                                                      |
 
 ---
 
