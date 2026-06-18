@@ -10,21 +10,23 @@
 
 # 📑 Índice
 
-1. [📋Overview](overview)
+1. [📋Overview](#1-overview)
 
-2. [🔍How the Framework Detects Service Mode](how-the-framework-detects-service-mode)
+2. [🔍How the Framework Detects Service Mode](#2-how-the-framework-detects-service-mode)
 
-3. [🔄Changes in Server Behavior](changes-in-server-behavior)
+3. [🔄Changes in Server Behavior](#3-changes-in-server-behavior)
 
-4. [📂Configuring Server Port and Name Without a Console](configuring-server-port-and-name-without-a-console)
+4. [📂Configuring Server Port and Name Without a Console](#4-configuring-server-port-and-name-without-a-console)
 
-5. [💻Registering the Application as a Windows Service](registering-the-application-as-a-windows-service)
+5. [💻Registering the Application as a Windows Service](#5-registering-the-application-as-a-windows-service)
 
-6. [🚀Full Service Initialization Flow](full-service-initialization-flow)
+6. [🚀Full Service Initialization Flow](#6-full-service-initialization-flow)
 
-7. [⚠️Important Notes](important-notes)
+7. [⚠️Important Notes](#7-%EF%B8%8Fimportant-notes)
 
-1. ### 📋Overview
+---
+
+### 1. 📋Overview
 
 * The D2Bridge Framework core already includes native support for detection and execution as a Windows Service.
 
@@ -34,7 +36,7 @@
 
 ---
 
-2. ### 🔍How the Framework Detects Service Mode
+### 2. 🔍How the Framework Detects Service Mode
 
 In the file `D2Bridge.Util.pas`, the function `IsRunningAsService` determines whether the application is running as a Windows service by combining two conditions:
 
@@ -69,7 +71,7 @@ end;
 ```
 ---
 
-3. ### 🔄Changes in Server Behavior
+### 3. 🔄Changes in Server Behavior
 
 In `D2Bridge.ServerControllerBase.pas`, the method `CheckNeedConsole` uses the result returned by `IsRunningAsService`.
 ```pascal
@@ -96,7 +98,7 @@ Specifically:
 
 ---
 
-4. ### 📂Configuring Server Port and Name Without a Console
+### 4. 📂Configuring Server Port and Name Without a Console
 
 When running without a console, the server reads configuration values directly from a file named `Config.ini`, located in the same directory as the executable file.
 
@@ -121,8 +123,10 @@ Server Port=8888
 Server Name=YourServerName
 ```
 > 💡 Replace `8888` with your desired port number and `YourServerName` with your preferred server name.
+
 ---
-5. ### 💻Registering the Application as a Windows Service
+
+### 5. 💻Registering the Application as a Windows Service
 
 > 🚨 **Prerequisite:** Run Command Prompt (`cmd`) or PowerShell as **Administrator**.
 
@@ -170,7 +174,8 @@ NSSM (Non-Sucking Service Manager) is a free tool that provides automatic restar
   nssm remove ServiceName confirm
   ```
 ---
-6. ### 🚀Full Service Initialization Flow
+
+### 6. 🚀Full Service Initialization Flow
 
 1. Windows starts the service in Session 0 without an interactive desktop.
 
@@ -192,7 +197,7 @@ NSSM (Non-Sucking Service Manager) is a free tool that provides automatic restar
 
 10. The internal loop keeps the process alive while the server is running.
 ---
-7. ### ⚠️Important Notes
+### 7. ⚠️Important Notes
 
 * The `.dpr` file **does not require any modification**.
 
