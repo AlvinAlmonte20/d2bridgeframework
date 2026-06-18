@@ -1,8 +1,6 @@
+# 🌐D2Bridge Framework
 <div align="center">
-<strong style="font-size:28px;">D2Bridge Framework</strong>
-
-<br>
-
+ 
 ![D2Bridge Logo](/assets/LogoD2BridgeTransp.png)
 
 [![GitHub stars](https://img.shields.io/github/stars/d2bridge/d2bridgeframework?style=social)](https://github.com/d2bridge/d2bridgeframework/stargazers)
@@ -79,10 +77,27 @@ This Framework was designed to compile your Delphi project on the Web, all proce
 - First, close all open Delphi instances.
 - To install the full D2Bridge Framework and the D2Bridge Wizard, run: Wizard/InstallD2BridgeWizard.exe 
 
-
 ### Lazarus (Windows only)
 - First, close all open Lazarus instances.
 - To install the full D2Bridge Framework and the D2Bridge Wizard, compile and install the package: Wizard/Package/d2bridgeframeworkwizard.lpk 
+
+---
+
+## 📚 Documentación y Manuales
+
+- 📖 [D2Bridge Framework - Unofficial Encyclopedia (EN)](./Beta/DOC/D2Bridge_EN.md)
+- 📖 [D2Bridge Framework - Nieoficjalna Encyklopedia (PL)](./Beta/DOC/D2Bridge_PL.md)
+
+- 📑 Manuales en PDF:
+  - [D2Bridge Ecosystem](./Beta/DOC/D2Bridge%20Ecosystem.pdf)
+  - [Form Rendering Lifecycle](./Beta/DOC/Form%20Rendering%20Lifecycle.pdf)
+  - [Update Control Event](./Beta/DOC/Update%20Control%20Event.pdf)
+  - [Using D2Bridge Resource Monitor](./Beta/DOC/D2Bridge_Resource_Monitor.md)
+  - [Using D2Bridge Windows Service](./Beta/DOC/D2Bridge_Windows_Service.md)
+  - [D2Bridge as a Service With NSSM EN](./Beta/DOC/D2Bridge_as_a_Service_With_NSSM_EN.md)
+  - [Tags](./Beta/DOC/Tags.pdf)
+  - [Variables](./Beta/DOC/Variables.pdf)
+  - [CallBack](./Beta/DOC/CallBack.pdf)
 
 ---
 
@@ -93,7 +108,7 @@ Use the **Discord channel** for community support.
 
 ## 📜 License
 
-***D2Bridge Framework Content***
+**_D2Bridge Framework Content_**
 
   **Author:** Talis Jonatas Gomes<br>
   **Email:** talisjonatas@me.com
@@ -136,7 +151,7 @@ Use the **Discord channel** for community support.
 ---
 
 ## 🤝 Contributing
-***Contributions are welcome!***
+**_Contributions are welcome!_**
 
 D2Bridge Framework is an Open Source tool and we do not have any source of income so your donation is very welcome to maintain the project
 
@@ -145,4 +160,4 @@ D2Bridge Framework is an Open Source tool and we do not have any source of incom
 We will be immensely grateful for your collaboration, and you can be sure that we will always do our best to ensure you have the best Delphi Web experience with D2Bridge Framework
 
 God bless you<br>
-Talis Jonatas Gomes
+**_Talis Jonatas Gomes_**
