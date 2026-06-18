@@ -85,16 +85,16 @@ This Framework was designed to compile your Delphi project on the Web, all proce
 
 ## 📚 Documentación y Manuales
 
-- 📖 [D2Bridge Framework - Unofficial Encyclopedia (EN)](./Beta/DOC/D2Bridge_EN.md)
-- 📖 [D2Bridge Framework - Nieoficjalna Encyklopedia (PL)](./Beta/DOC/D2Bridge_PL.md)
+- 📖[D2Bridge Framework - Unofficial Encyclopedia (EN)](./Beta/DOC/D2Bridge_EN.md)
+- 📖[D2Bridge Framework - Nieoficjalna Encyklopedia (PL)](./Beta/DOC/D2Bridge_PL.md)
+- 📊[Using D2Bridge Resource Monitor](./Beta/DOC/D2Bridge_Resource_Monitor.md)
+- ⚙️[Using D2Bridge Windows Service](./Beta/DOC/D2Bridge_Windows_Service.md)
+- 🚀[D2Bridge as a Service With NSSM EN](./Beta/DOC/D2Bridge_as_a_Service_With_NSSM_EN.md)
 
 - 📑 Manuales en PDF:
   - [D2Bridge Ecosystem](./Beta/DOC/D2Bridge%20Ecosystem.pdf)
   - [Form Rendering Lifecycle](./Beta/DOC/Form%20Rendering%20Lifecycle.pdf)
   - [Update Control Event](./Beta/DOC/Update%20Control%20Event.pdf)
-  - [Using D2Bridge Resource Monitor](./Beta/DOC/D2Bridge_Resource_Monitor.md)
-  - [Using D2Bridge Windows Service](./Beta/DOC/D2Bridge_Windows_Service.md)
-  - [D2Bridge as a Service With NSSM EN](./Beta/DOC/D2Bridge_as_a_Service_With_NSSM_EN.md)
   - [Tags](./Beta/DOC/Tags.pdf)
   - [Variables](./Beta/DOC/Variables.pdf)
   - [CallBack](./Beta/DOC/CallBack.pdf)
