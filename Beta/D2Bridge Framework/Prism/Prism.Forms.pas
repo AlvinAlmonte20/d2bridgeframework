@@ -1083,7 +1083,7 @@ begin
   Regex := TRegExpr.Create('\{\{.*?\}\}');
 {$ENDIF}
 
-  // Inicialize as vari�veis
+  // Inicialize as variáveis
   StartPos := 1;
 
   // Comece a percorrer o HTMLText
@@ -1091,14 +1091,14 @@ begin
   begin
    try
 {$IFDEF HAS_UNIT_REGULAREXPRESSIONSAPI}
-    // Encontre a pr�xima correspond�ncia
+    // Encontre a proxima correspondencia
     Match := Regex.Match(HTMLText, StartPos);
 
-    // Se n�o houver correspond�ncia, saia do loop
+    // Se nao houver correspondencia, saia do loop
     if not Match.Success then
       Break;
 {$ELSE}
-    // Encontre a pr�xima correspond�ncia, Se n�o houver correspond�ncia, saia do loop
+    // Encontre a proxima correspondencia, Se n�o houver correspond�ncia, saia do loop
     if not Regex.Exec(HTMLText.Substring(StartPos)) then
       Break;
 
