@@ -9,10 +9,10 @@ Usage Guide
 * [⚙️Configuration Parameters](#Configuration-Parameters)
 * [📂Where the Log Is Written](#Where-the-Log-Is-Written)
     * [Example Log Entry](#Example-Log-Entry)
-* [📝Configuration - Option 1: Using an INI File (Recommended)](#-Configuration---Option-1-Using-an-INI-File-(Recommended))
+* [📝Configuration - Option 1: Using an INI File (Recommended)](#configuration---option-1-using-an-ini-file-recommended)
     * [Ini File Example](#Ini-File-Example)
-* [💻Configuration - Option 2: Programmatic Configuration (Properties)](#Configuration---Option-2-Programmatic-Configuration-(Properties))
-* [⚠️Important Notes](#Important-Notes)
+* [💻Configuration - Option 2: Programmatic Configuration (Properties)](#configuration---option-2-programmatic-configuration-properties)
+* [⚠️Important Notes](#%EF%B8%8Fimportant-notes)
 ---
 
 ### ❓What Is the Resource Monitor
