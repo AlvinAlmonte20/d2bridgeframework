@@ -244,39 +244,55 @@ begin
 end;
 
 procedure TPrismSessionThreadProc.Exec;
+var
+  vSpinCount: Integer;
+  vIdent: string;
 begin
  try
-  FFinished:= false;
+  FFinished := false;
 
   if FSincronize then
   begin
    Queue(ProcExec);
-  end else
+  end
+  else
    Start;
 
   if FWait then
   begin
    if FSincronize then
    begin
-    var vSpinCount: Integer := 0;
+    vSpinCount := 0;
+
     repeat
-     sleep(1);
+     Sleep(1);
      Inc(vSpinCount);
+
      // 60 000 iteracoes x 1ms = 60 segundos sem resposta: loga e aborta espera
      if vSpinCount = 60000 then
      begin
       try
-       var vIdent: string := '';
+       vIdent := '';
+
        if Assigned(FPrismSession) then
         vIdent := FPrismSession.InfoConnection.Identity;
-       PrismBaseClass.Log(vIdent, '', '', 'ThreadProc.SpinTimeout',
-        'Thread sincronizada nao concluiu em 60s. Posivel travamento VCL/D2Bridge.');
+
+       PrismBaseClass.Log(
+         vIdent,
+         '',
+         '',
+         'ThreadProc.SpinTimeout',
+         'Thread sincronizada nao concluiu em 60s. Posivel travamento VCL/D2Bridge.'
+       );
       except
       end;
+
       Break;
      end;
+
     until FFinished;
-   end else
+   end
+   else
    begin
     WaitFor;
    end;
@@ -286,6 +302,7 @@ begin
    except
    end;
   end;
+
  except
  end;
 end;
