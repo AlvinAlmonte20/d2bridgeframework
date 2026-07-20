@@ -39,7 +39,7 @@ uses
 type
  TCSSFontAwesome = class
   const
-    add = 'fa fa-plus';
+    add = 'fa-solid fa-plus';
     addressbook = 'fa-solid fa-address-book';
     alarmclock = 'fa-solid fa-alarm-clock';
     arrowdown = 'fa-solid fa-arrow-down';
@@ -51,7 +51,7 @@ type
     bell = 'fa-solid fa-bell';
     bellslash = 'fa-solid fa-bell-slash';
     bluetoothBrand = 'fa-brands fa-bluetooth';
-    bluetoothSolid = 'fa-solid fa-bluetooth';
+    bluetoothSolid = 'fa-brands fa-bluetooth';
     bolt = 'fa-solid fa-bolt';
     book = 'fa-solid fa-book';
     bookBookmark = 'fa-solid fa-book-bookmark';
@@ -75,7 +75,7 @@ type
     calculator = 'fa-solid fa-calculator';
     calendar = 'fa-solid fa-calendar-days';
     calendarDays = 'fa-solid fa-calendar-days';
-    cancel = 'fa fa-x';
+    cancel = 'fa-solid fa-xmark';
     car = 'fa-solid fa-car';
     caron = 'fa-solid fa-car-on';
     carSide = 'fa-solid fa-car-side';
@@ -85,18 +85,18 @@ type
     check = 'fa-solid fa-check';
     circleexclamation = 'fa-solid fa-circle-exclamation';
     circleuser = 'fa-solid fa-circle-user';
-    close = 'fa fa-sign-out';
+    close = 'fa-solid fa-right-from-bracket';
     comment = 'fa-solid fa-comment';
     comments = 'fa-solid fa-comments';
-    config = 'fa fa-screwdriver-wrench';
-    copy = 'fa fa-copy';
-    cut = 'fa fa-scissors';
-    delete = 'fa fa-trash';
+    config = 'fa-solid fa-screwdriver-wrench';
+    copy = 'fa-solid fa-copy';
+    cut = 'fa-solid fa-scissors';
+    delete = 'fa-solid fa-trash';
     desktop = 'fa-solid fa-desktop';
     doorClosed = 'fa-solid fa-door-closed';
     doorOpen = 'fa-solid fa-door-open';
-    download = 'fa fa-cloud-download-alt';
-    edit = 'fa fa-edit';
+    download = 'fa-solid fa-cloud-arrow-down';
+    edit = 'fa-solid fa-pen-to-square';
     ellipsis = 'fa-solid fa-ellipsis';
     ellipsisVertical = 'fa-solid fa-ellipsis-vertical';
     envelopeCircleCheck = 'fa-solid fa-envelope-circle-check';
@@ -124,7 +124,7 @@ type
     lock = 'fa-solid fa-lock';
     lockOpen = 'fa-solid fa-lock-open';
     magnifyingGlass = 'fa-solid fa-magnifying-glass';
-    menu = 'fa fa-menu';
+    menu = 'fa-solid fa-bars';
     money = 'fa-solid fa-money-bill';
     numbereight = 'fa-solid fa-8';
     numberfive = 'fa-solid fa-5';
@@ -136,8 +136,8 @@ type
     numberthree = 'fa-solid fa-3';
     numbertwo = 'fa-solid fa-2';
     numberzero = 'fa-solid fa-0';
-    open = 'fa fa-external-link';
-    options = 'fa fa-sliders';
+    open = 'fa-solid fa-up-right-from-square';
+    options = 'fa-solid fa-sliders';
     person = 'fa-solid fa-person';
     personCircleCheck = 'fa-solid fa-person-circle-check';
     personCircleExclamation = 'fa-solid fa-person-circle-exclamation';
@@ -145,22 +145,22 @@ type
     personCirclePlus = 'fa-solid fa-person-circle-plus';
     personCircleQuestion = 'fa-solid fa-person-circle-question';
     personCircleXmark = 'fa-solid fa-person-circle-xmark';
-    power = 'fa fa-power-off';
-    print = 'fa fa-print';
+    power = 'fa-solid fa-power-off';
+    print = 'fa-solid fa-print';
     question = 'fa-solid fa-question';
     receipt = 'fa-solid fa-receipt';
-    refresh = 'fa fa-refresh-cw';
-    save = 'fa fa-save';
-    search = 'fa fa-search';
-    select = 'fa fa-check-square';
-    share = 'fa fa-share';
+    refresh = 'fa-solid fa-arrows-rotate';
+    save = 'fa-solid fa-floppy-disk';
+    search = 'fa-solid fa-magnifying-glass';
+    select = 'fa-solid fa-square-check';
+    share = 'fa-solid fa-share';
     squareenvelope = 'fa-solid fa-square-envelope';
     towerbroadcast = 'fa-solid fa-tower-broadcast';
     triangleexclmation = 'fa-solid fa-triangle-exclamation';
-    upload = 'fa fa-upload';
+    upload = 'fa-solid fa-upload';
     user = 'fa-solid fa-user';
     vanShuttle = 'fa-solid fa-van-shuttle';
-    view = 'fa fa-eye';
+    view = 'fa-solid fa-eye';
     wallet = 'fa-solid fa-wallet';
  end;
 
