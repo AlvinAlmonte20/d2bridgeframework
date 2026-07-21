@@ -607,6 +607,7 @@ begin
 
   //Font
   Add('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>');
+  //Add('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"/>');
 
   //JQGrid
   if PrismBaseClass.Options.IncludeJQGrid then
