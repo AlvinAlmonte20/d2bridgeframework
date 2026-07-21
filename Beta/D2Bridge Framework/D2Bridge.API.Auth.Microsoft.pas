@@ -143,7 +143,9 @@ begin
 
     Response := TStringStream.Create('');
 
-    HTTPClient.Get('https://graph.microsoft.com/v1.0/me/photo/$value', Response);
+    HTTPClient.HTTPMethod('GET', 'https://graph.microsoft.com/v1.0/me/photo/$value', Response, []);
+
+    //HTTPClient.Get('https://graph.microsoft.com/v1.0/me/photo/$value', Response);
 
     vResponseStatusCode:= HTTPClient.ResponseStatusCode;
     vResponseContent:= Response;
@@ -169,6 +171,8 @@ begin
       Base64Stream.Position := 0;
 
       Result := 'data:image/jpeg;base64,' + Base64Stream.DataString;
+      Encoder.Free;
+
     end
     else
     begin
@@ -178,9 +182,6 @@ begin
     HTTPClient.Free;
     PhotoStream.Free;
     Base64Stream.Free;
-{$IFDEF FPC}
-    Encoder.Free;
-{$ENDIF}
   end;
 end;
 
