@@ -2459,19 +2459,38 @@ end;
 
 function TWebSocketIOHandlerHelper.ReadBytes: TArray<Byte>;
 var
-  l: Byte;
+  b0, b1, l: Byte;
   b: array [0..7] of Byte;
   i, DecodedSize: {$IFNDEF FPC}Int64{$ELSE}SizeInt{$ENDIF};
   Mask: array [0..3] of Byte;
+  Fin, Masked, MessageComplete: Boolean;
+  Opcode: Byte;
+  FrameData: TArray<Byte>;
 begin
+  // Leitor de frames WebSocket com suporte a mensagens FRAGMENTADAS.
+  // Navegadores (ex.: Chrome) quebram payloads grandes (imagens base64) em
+  // varios frames: 1o frame FIN=0/opcode=texto, frames de continuacao
+  // FIN=0/opcode=0, e frame final FIN=1. A versao antiga so aceitava um
+  // unico frame de texto ($81); ao receber um fragmentado ela desincronizava
+  // o stream e derrubava a conexao (-> sessao morre -> tela preta).
+  // Agora remontamos a mensagem respeitando o bit FIN, acumulando os frames
+  // de dados (continuation/text/binary) e ignorando frames de controle
+  // (ping/pong/close), independente do tamanho/quantidade.
+  Result := [];
+  MessageComplete := False;
   try
-    Result:= [];
-
-    if ReadByte = $81 then
+    while not MessageComplete do
     begin
-      l := ReadByte;
+      b0 := ReadByte;
+      Fin := (b0 and $80) <> 0;
+      Opcode := b0 and $0F;
+
+      b1 := ReadByte;
+      Masked := (b1 and $80) <> 0;
+      l := b1 and $7F;
+
       case l of
-        $FE:
+        126:
           begin
             b[1] := ReadByte;
             b[0] := ReadByte;
@@ -2483,7 +2502,7 @@ begin
             b[7] := 0;
             DecodedSize := PInt64(@b)^;
           end;
-        $FF:
+        127:
           begin
             b[7] := ReadByte;
             b[6] := ReadByte;
@@ -2496,23 +2515,45 @@ begin
             DecodedSize := PInt64(@b)^;
           end;
         else
-          DecodedSize := l - 128;
+          DecodedSize := l;
       end;
-      Mask[0] := ReadByte;
-      Mask[1] := ReadByte;
-      Mask[2] := ReadByte;
-      Mask[3] := ReadByte;
 
-      if DecodedSize < 1 then
+      if Masked then
       begin
-        Result := [];
-        Exit;
+        Mask[0] := ReadByte;
+        Mask[1] := ReadByte;
+        Mask[2] := ReadByte;
+        Mask[3] := ReadByte;
       end;
 
-      SetLength(Result, DecodedSize);
-      inherited ReadBytes(TIdBytes(Result), DecodedSize, False);
-      for i := 0 to DecodedSize - 1 do
-        Result[i] := Result[i] xor Mask[i mod 4];
+      FrameData := [];
+      if DecodedSize > 0 then
+      begin
+        SetLength(FrameData, DecodedSize);
+        inherited ReadBytes(TIdBytes(FrameData), DecodedSize, False);
+        if Masked then
+          for i := 0 to DecodedSize - 1 do
+            FrameData[i] := FrameData[i] xor Mask[i mod 4];
+      end;
+
+      case Opcode of
+        $0, $1, $2: // continuation / text / binary -> acumula
+          begin
+            Result := Result + FrameData;
+            if Fin then
+              MessageComplete := True;
+          end;
+        $8: // close -> encerra
+          begin
+            Result := [];
+            MessageComplete := True;
+          end;
+        $9, $A: // ping / pong -> ignora e continua lendo o proximo frame
+          ;
+      else
+        // opcode desconhecido -> ignora este frame
+        ;
+      end;
     end;
   except
     on E: Exception do
