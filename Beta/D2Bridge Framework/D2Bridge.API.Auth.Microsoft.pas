@@ -235,6 +235,7 @@ begin
     vparams.Add('client_id='    + Config.ClientID);
     vparams.Add('scope='        + MicrosoftAuthScope);
     vparams.Add('redirect_uri=' + vRedirectURI);
+    vparams.Add('client_secret=' + Config.ClientSecret);
     vparams.Add('grant_type=authorization_code');
 
 {$IFNDEF FPC}
