@@ -162,16 +162,20 @@ begin
   {$ELSE}
       EncodeStream(PhotoStream, Base64Stream);
   {$ENDIF}
-{$ELSE}
-      Encoder:= TBase64EncodingStream.Create(Base64Stream);
-      Encoder.CopyFrom(PhotoStream, PhotoStream.Size);
-      Encoder.Flush;
-{$ENDIF}
-
       Base64Stream.Position := 0;
-
       Result := 'data:image/jpeg;base64,' + Base64Stream.DataString;
-      Encoder.Free;
+{$ELSE}
+      Encoder := nil;
+      try
+        Encoder := TBase64EncodingStream.Create(Base64Stream);
+        Encoder.CopyFrom(PhotoStream, PhotoStream.Size);
+        Encoder.Flush;
+        Base64Stream.Position := 0;
+        Result := 'data:image/jpeg;base64,' + Base64Stream.DataString;
+      finally
+        Encoder.Free;
+      end;
+{$ENDIF}
 
     end
     else
